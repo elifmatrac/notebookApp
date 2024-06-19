@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import LoginPage from "./component/LoginPage";
+import SignupPage from "./component/SignupPage";
+import MainPage from "./component/MainPage";
+import {Cookies} from "react-cookie";
+import NoteEdit from "./component/NoteEdit";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const cookies = new Cookies();
+    return (
+        <div className="App">
+            <Router>
+
+                <Routes>
+                    <Route path="/" element={<LoginPage/>}/>
+                    <Route path="/signup" element={<SignupPage/>}/>
+                    <Route path="/main" element={<MainPage/>}/>
+                    <Route path='/note/:id' element={<NoteEdit/>}/>
+                </Routes>
+
+            </Router>
+        </div>
+    );
 }
 
-export default App;
+export default App; 
